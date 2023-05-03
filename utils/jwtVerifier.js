@@ -1,8 +1,8 @@
 import * as JWT from 'jsonwebtoken';
 import axios from 'axios';
 import { ok, doesNotMatch, match as doesMatch } from 'assert';
-import ApiError from './apiError';
-import { loadEnv } from './index';
+import ApiError from './apiError.js'
+import { loadEnv } from '../server.js';
 
 class ConfigurationValidationError extends Error {}
 
