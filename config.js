@@ -7,7 +7,7 @@ const config = {
 		...defaultAuthConfig,
 		domain: '_DOMAIN_',
 		clientId: '_CLIENTID_',
-		// UNCOMMENT LINE 12 to test the private API
+		// UNCOMMENT the line below to test the private API
 		// audience: ['authRocks'],
 	},
 	app: {

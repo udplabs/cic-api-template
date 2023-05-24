@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
 import express from 'express';
-import {} from '@okta/jwt-verifier';
+import { } from '@okta/jwt-verifier';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import morgan from 'morgan';
@@ -39,8 +39,8 @@ const permissions = Array.isArray(AUTH_PERMISSIONS) ? AUTH_PERMISSIONS : AUTH_PE
 const audience = Array.isArray(AUDIENCE)
 	? AUDIENCE
 	: AUDIENCE?.includes(', ')
-	? AUDIENCE?.split(', ')
-	: AUDIENCE?.split(',');
+		? AUDIENCE?.split(', ')
+		: AUDIENCE?.split(',');
 
 const issuer =
 	ISSUER || domain.lastIndexOf('/') === domain.length - 1 ? 'https://' + domain : 'https://' + domain + '/';
@@ -118,14 +118,15 @@ const verifyJwt = (options) => {
 	return verifyToken;
 };
 
-app.get('/api/public', (req, res) =>
+app.get('/api/public', (req, res) => {
 	res.json({
 		success: true,
 		message: 'This is the Public API. Anyone can request this response. Hooray!',
 	})
+}
 );
 
-app.get('/api/private', verifyJwt({ audience: ['not_configured'] }), (req, res) =>
+app.get('/api/private', verifyJwt({ audience: [audience] }), (req, res) =>
 	res.json({
 		success: true,
 		message:
@@ -141,6 +142,8 @@ app.get('/api/scoped', verifyJwt({ claimsToAssert: { 'permissions.includes': per
 	})
 );
 
+app.get('*', (req, res) => res.json({ success: true, message: 'This is the home route for this API server!' }))
+
 app.listen(port, () => {
-  console.log(`Server listening at http://localhost:${port}`);
+	console.log(`Server listening at http://localhost:${port}`);
 });

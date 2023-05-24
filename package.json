@@ -8,7 +8,7 @@
 	"main": "server.js",
 	"type": "module",
 	"scripts": {
-		"start": "node server.js"
+		"start": "nodemon server.js"
 	},
 	"keywords": [
 		"okta",
@@ -34,7 +34,8 @@
 		"jsonwebtoken-wc": "^8.5.1",
 		"jwks-rsa": "^2.1.5",
 		"morgan": "^1.10.0",
-		"node-jose": "^2.1.1"
+		"node-jose": "^2.1.1",
+		"nodemon": "^2.0.22"
 	},
 	"stackblitz": {
 		"startCommand": "npm start",
